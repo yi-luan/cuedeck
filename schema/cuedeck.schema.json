@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cuedeck.schema.json",
+  "title": "CueDeck 劇本",
+  "description": "Demo 講稿與網頁操作步驟。每個步驟（cue）是一顆按鈕，按下去依序執行 actions。",
+  "type": "object",
+  "required": ["cuedeck", "title", "sections"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "cuedeck": { "const": 1, "description": "格式版本" },
+    "title": { "type": "string", "description": "劇本名稱" },
+    "target": { "type": "string", "format": "uri", "description": "Demo 網站網址。goto 的相對路徑以這裡為基準，也用來挑要操作的分頁。" },
+    "sections": {
+      "type": "array",
+      "description": "依講述順序排列的段落",
+      "items": {
+        "type": "object",
+        "required": ["title"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string" },
+          "notes": { "type": "string", "description": "講稿（Markdown），只有講者看得到。寫 {{步驟名稱}} 會在那個位置放一個可以點的觸發點，「下一步」也依講稿中出現的順序推進。" },
+          "cues": { "type": "array", "items": { "$ref": "#/definitions/cue" } }
+        }
+      }
+    },
+    "flows": {
+      "type": "object",
+      "description": "具名的共用流程，步驟裡用 { \"do\": \"flow\", \"name\": \"...\" } 呼叫",
+      "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/action" } }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "cue": {
+      "type": "object",
+      "required": ["label", "actions"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "description": "按鈕文字" },
+        "actions": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/action" } }
+      }
+    },
+    "locator": {
+      "properties": {
+        "selector": { "type": "string", "description": "CSS selector" },
+        "text": { "type": "string", "description": "用畫面上的文字找元素（不知道 selector 時用）" },
+        "within": { "type": "string", "description": "用 text 找元素時，限定在這個 selector 範圍內" }
+      },
+      "anyOf": [{ "required": ["selector"] }, { "required": ["text"] }]
+    },
+    "action": {
+      "type": "object",
+      "required": ["do"],
+      "properties": {
+        "do": {
+          "enum": ["goto", "click", "type", "press", "scroll", "scrollTo", "wait", "waitText", "highlight", "eval", "back", "reload", "flow"],
+          "description": "動作種類"
+        }
+      },
+      "allOf": [
+        { "if": { "properties": { "do": { "const": "goto" } } }, "then": { "required": ["url"], "properties": { "url": { "type": "string", "description": "網址或相對路徑" } } } },
+        { "if": { "properties": { "do": { "const": "click" } } }, "then": { "$ref": "#/definitions/locator" } },
+        { "if": { "properties": { "do": { "const": "type" } } }, "then": { "required": ["selector", "text"], "properties": { "selector": { "type": "string" }, "text": { "type": "string", "description": "要輸入的文字（會先清空）" } } } },
+        { "if": { "properties": { "do": { "const": "press" } } }, "then": { "required": ["key"], "properties": { "key": { "type": "string", "description": "例如 Enter、Escape、ArrowDown" } } } },
+        { "if": { "properties": { "do": { "const": "scroll" } } }, "then": { "allOf": [{ "$ref": "#/definitions/locator" }], "properties": { "align": { "enum": ["top", "center", "bottom"] } } } },
+        { "if": { "properties": { "do": { "const": "scrollTo" } } }, "then": { "required": ["y"], "properties": { "y": { "oneOf": [{ "type": "number" }, { "enum": ["top", "bottom"] }] } } } },
+        { "if": { "properties": { "do": { "const": "wait" } } }, "then": { "properties": { "ms": { "type": "number" }, "selector": { "type": "string", "description": "等這個元素出現（最多 15 秒）" } }, "anyOf": [{ "required": ["ms"] }, { "required": ["selector"] }] } },
+        { "if": { "properties": { "do": { "const": "waitText" } } }, "then": { "required": ["text"], "properties": { "text": { "type": "string" } } } },
+        { "if": { "properties": { "do": { "const": "highlight" } } }, "then": { "allOf": [{ "$ref": "#/definitions/locator" }], "properties": { "caption": { "type": "string", "description": "強調框旁的說明文字（觀眾看得到）" }, "ms": { "type": "number", "description": "顯示多久，預設 2500" } } } },
+        { "if": { "properties": { "do": { "const": "eval" } } }, "then": { "required": ["code"], "properties": { "code": { "type": "string", "description": "在頁面裡執行的 JavaScript" } } } },
+        { "if": { "properties": { "do": { "const": "flow" } } }, "then": { "required": ["name"], "properties": { "name": { "type": "string" } } } }
+      ]
+    }
+  }
+}

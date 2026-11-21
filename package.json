@@ -1,0 +1,61 @@
+{
+  "name": "cuedeck",
+  "version": "0.3.0",
+  "private": true,
+  "description": "CueDeck：Demo 時的隱形講稿與網頁操作面板，螢幕分享看不到，點一下就能操作瀏覽器頁面",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node launch.js",
+    "test": "node test/engine.test.js",
+    "rehearse": "node test/rehearse.js",
+    "dist": "electron-builder --win"
+  },
+  "dependencies": {
+    "marked": "^15.0.0",
+    "puppeteer-core": "^24.0.0"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "productName": "CueDeck",
+  "author": "CueDeck",
+  "build": {
+    "appId": "app.cuedeck.desktop",
+    "productName": "CueDeck",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "decks/**/*",
+      "schema/**/*",
+      "package.json"
+    ],
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CueDeck",
+      "artifactName": "CueDeck-Setup-${version}.exe"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# 相依套件（npm install 可重建）
+node_modules/
+
+# 打包產物（npm run dist 可重建，單檔過大）
+dist/
+
+# 系統與編輯器暫存
+.DS_Store
+Thumbs.db
+*.log

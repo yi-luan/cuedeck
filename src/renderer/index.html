@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: file:">
+  <title>CueDeck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="titlebar">
+    <span class="logo" aria-hidden="true"></span>
+    <span class="brand">CueDeck</span>
+    <span class="sep">/</span>
+    <span id="deck-title" class="deck-title">—</span>
+    <span id="dirty" class="dirty" hidden title="有尚未儲存的變更"></span>
+    <span class="grow"></span>
+    <span id="pill-cdp" class="pill" title="Demo 用 Chrome 連線狀態"><i></i><b>未連線</b></span>
+    <span id="pill-shield" class="pill shield" title="螢幕分享看不到這個視窗"></span>
+    <button class="win" data-win="minimize" title="最小化" data-icon="minus"></button>
+    <button class="win close" data-win="close" title="關閉" data-icon="x"></button>
+  </header>
+
+  <nav class="toolbar">
+    <div class="seg" role="tablist">
+      <button id="mode-present" class="on" data-icon="play">簡報</button>
+      <button id="mode-edit" data-icon="pencil">編輯</button>
+    </div>
+    <span class="grow"></span>
+    <button id="btn-chrome" class="tool" data-icon="globe" title="啟動 Demo 用 Chrome（之後要在這個視窗 demo）"></button>
+    <button id="btn-pick" class="tool" data-icon="crosshair" title="從頁面選取元素，新增步驟" hidden></button>
+    <button id="btn-save" class="tool" data-icon="save" title="儲存（Ctrl+S）" hidden></button>
+    <button id="btn-menu" class="tool" data-icon="more" title="更多"></button>
+    <div id="menu" class="menu" hidden>
+      <button data-menu="open" data-icon="upload">匯入劇本（JSON / Markdown）…</button>
+      <button data-menu="new" data-icon="plus">新增空白劇本…</button>
+      <button data-menu="saveas" data-icon="save">另存新檔…</button>
+      <button data-menu="reveal" data-icon="folder">在檔案總管中顯示</button>
+      <hr>
+      <button data-menu="screens" data-icon="monitor">HDMI / 投影設定</button>
+      <hr>
+      <button data-menu="settings" data-icon="sliders">外觀與快速鍵</button>
+    </div>
+  </nav>
+
+  <section id="settings" class="settings" hidden>
+    <label><span>透明度</span><input id="opacity" type="range" min="0.4" max="1" step="0.02"></label>
+    <label><span>字級</span><input id="font" type="range" min="11" max="22" step="1"></label>
+    <label class="switch"><input id="protect" type="checkbox"><i></i><span>螢幕分享時隱藏這個視窗</span></label>
+    <p class="tip">隱形只擋得住 Meet 等螢幕分享，擋不住 HDMI。接投影機時請按 <kbd>Win</kbd><kbd>P</kbd> 選「延伸」，再從選單「HDMI / 投影設定」擺放視窗。</p>
+    <div class="keys">
+      <span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>→</kbd> 下一步</span>
+      <span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>←</kbd> 上一步</span>
+      <span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>↓</kbd> 重跑這一步</span>
+      <span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>H</kbd> 隱藏 / 顯示</span>
+    </div>
+  </section>
+
+  <div id="screens" class="screens" hidden></div>
+  <div id="errors" class="errors" hidden></div>
+
+  <main id="present" class="present"></main>
+  <main id="edit" class="edit" hidden></main>
+
+  <footer id="foot" class="foot">
+    <div class="progress"><i id="progress-bar"></i></div>
+    <div class="foot-row">
+      <button id="btn-prev" class="ghost" data-icon="chevron-left" title="上一步（Ctrl+Alt+←）"></button>
+      <span id="pos" class="pos">0 / 0</span>
+      <span id="log" class="log"></span>
+      <button id="btn-next" class="primary" title="下一步（Ctrl+Alt+→）">下一步<span data-icon="chevron-right"></span></button>
+    </div>
+  </footer>
+
+  <div id="sheet-wrap" class="sheet-wrap" hidden>
+    <div id="sheet" class="sheet"></div>
+  </div>
+
+  <script src="icons.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+{
+  "$schema": "../schema/cuedeck.schema.json",
+  "cuedeck": 1,
+  "title": "Project02 Demo",
+  "target": "http://localhost:3002",
+  "sections": [
+    {
+      "title": "準備",
+      "notes": "> 先在 `project02-zipf-word2vec-ir/server` 跑 `npm run dev`，再按工具列的地球圖示啟動 Demo 用 Chrome。\n>\n> 講稿中的藍色小按鈕就是觸發點：講到那裡點一下（或按 Ctrl+Alt+→），頁面就會跟著動。",
+      "cues": []
+    },
+    {
+      "title": "開場",
+      "notes": "大家好，今天 demo 的是 **Zipf 定律 + Word2Vec** 的檢索系統。\n\n{{開啟首頁}}",
+      "cues": [
+        {
+          "label": "開啟首頁",
+          "actions": [
+            {
+              "do": "goto",
+              "url": "/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "詞頻分布 Zipf",
+      "notes": "先看前處理每一步對詞頻分布的影響。\n\n{{切到 Zipf 分頁}}\n\n- A → B 去標點：長尾變短\n- B → C 去停用詞：頭部最明顯\n\n{{看 B → C}}\n{{四組一起比}}\n\n接著疊上 Luhn 的上下切點，說明中間那一段才是有鑑別力的詞。\n\n{{疊上 Luhn 切點}}",
+      "cues": [
+        {
+          "label": "切到 Zipf 分頁",
+          "actions": [
+            {
+              "do": "click",
+              "text": "詞頻分布 Zipf"
+            },
+            {
+              "do": "scroll",
+              "selector": "#step-switch",
+              "align": "top"
+            }
+          ]
+        },
+        {
+          "label": "看 B → C",
+          "actions": [
+            {
+              "do": "click",
+              "selector": "#step-switch button[data-step=\"BC\"]"
+            },
+            {
+              "do": "highlight",
+              "selector": "#zipf-chart",
+              "caption": "去停用詞後，頭部高頻詞明顯下降"
+            }
+          ]
+        },
+        {
+          "label": "四組一起比",
+          "actions": [
+            {
+              "do": "click",
+              "selector": "#step-switch button[data-step=\"ALL\"]"
+            }
+          ]
+        },
+        {
+          "label": "疊上 Luhn 切點",
+          "actions": [
+            {
+              "do": "click",
+              "selector": "#luhn-toggle"
+            },
+            {
+              "do": "scroll",
+              "selector": "#luhn-panel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "單詞統計",
+      "notes": "{{查 osa 的 CF / DF / IDF}}",
+      "cues": [
+        {
+          "label": "查 osa 的 CF / DF / IDF",
+          "actions": [
+            {
+              "do": "scroll",
+              "selector": "#term-input"
+            },
+            {
+              "do": "type",
+              "selector": "#term-input",
+              "text": "osa"
+            },
+            {
+              "do": "click",
+              "selector": "#term-btn"
+            },
+            {
+              "do": "wait",
+              "ms": 600
+            },
+            {
+              "do": "highlight",
+              "selector": "#term-output",
+              "caption": "CF / DF / IDF 一次看"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Word2Vec",
+      "notes": "{{切到 Word2Vec}}\n\n查跟 insulin 最相近的詞，說明 Skip-gram 抓到的是語意鄰居。\n\n{{查 insulin 近鄰}}\n\n比較 Skip-gram 與 CBOW 的投影圖：\n\n{{切 CBOW}} {{切 t-SNE}}",
+      "cues": [
+        {
+          "label": "切到 Word2Vec",
+          "actions": [
+            {
+              "do": "flow",
+              "name": "到W2V"
+            }
+          ]
+        },
+        {
+          "label": "查 insulin 近鄰",
+          "actions": [
+            {
+              "do": "type",
+              "selector": "#w2v-input",
+              "text": "insulin"
+            },
+            {
+              "do": "click",
+              "selector": "#w2v-btn"
+            },
+            {
+              "do": "wait",
+              "ms": 800
+            },
+            {
+              "do": "highlight",
+              "selector": "#sim-list",
+              "caption": "Skip-gram 找到的語意鄰居"
+            }
+          ]
+        },
+        {
+          "label": "切 CBOW",
+          "actions": [
+            {
+              "do": "click",
+              "text": "CBOW"
+            }
+          ]
+        },
+        {
+          "label": "切 t-SNE",
+          "actions": [
+            {
+              "do": "click",
+              "text": "t-SNE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "檢索與拼字校正",
+      "notes": "故意打錯字 diabetis，看系統怎麼校正。\n\n{{示範拼字校正}}",
+      "cues": [
+        {
+          "label": "示範拼字校正",
+          "actions": [
+            {
+              "do": "flow",
+              "name": "搜尋示範"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "結語",
+      "notes": "謝謝大家！{{回到頂端}}",
+      "cues": [
+        {
+          "label": "回到頂端",
+          "actions": [
+            {
+              "do": "scrollTo",
+              "y": "top"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flows": {
+    "到W2V": [
+      {
+        "do": "click",
+        "text": "詞向量 Word2Vec"
+      },
+      {
+        "do": "wait",
+        "ms": 300
+      },
+      {
+        "do": "scroll",
+        "selector": "#w2v-input",
+        "align": "top"
+      }
+    ],
+    "搜尋示範": [
+      {
+        "do": "click",
+        "text": "檢索與拼字校正"
+      },
+      {
+        "do": "type",
+        "selector": "#search-input",
+        "text": "diabetis"
+      },
+      {
+        "do": "click",
+        "selector": "#search-btn"
+      },
+      {
+        "do": "wait",
+        "ms": 1000
+      },
+      {
+        "do": "highlight",
+        "selector": "#search-output",
+        "ms": 3000,
+        "caption": "拼字校正後的檢索結果"
+      }
+    ]
+  }
+}
