@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="左：你的螢幕上，CueDeck 浮在 Demo 網頁上方，顯示講稿與步驟按鈕。右：觀眾在螢幕分享中只看到網頁與強調框，看不到 CueDeck。">
+  <title>你看到的 vs 觀眾看到的</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111a30"/><stop offset="1" stop-color="#0a0f1d"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="1020" cy="40" r="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366f1" stop-opacity=".28"/><stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+    <!-- 一個 Demo 網頁（兩邊共用） -->
+    <g id="page">
+      <rect x="0" y="0" width="500" height="340" rx="12" fill="#f8fafc"/>
+      <path d="M12 0h476a12 12 0 0 1 12 12v22H0V12A12 12 0 0 1 12 0z" fill="#e2e8f0"/>
+      <circle cx="18" cy="17" r="5" fill="#f87171"/><circle cx="34" cy="17" r="5" fill="#fbbf24"/><circle cx="50" cy="17" r="5" fill="#34d399"/>
+      <rect x="72" y="9" width="250" height="16" rx="8" fill="#fff"/>
+      <text x="84" y="21.5" font-size="10.5" fill="#64748b" font-family="ui-monospace,Consolas,monospace">localhost:3000/search</text>
+      <rect x="24" y="54" width="120" height="12" rx="6" fill="#0f172a" opacity=".85"/>
+      <rect x="24" y="78" width="300" height="30" rx="8" fill="#fff" stroke="#cbd5e1"/>
+      <text x="36" y="98" font-size="13" fill="#0f172a" font-family="ui-monospace,Consolas,monospace">diabetis</text>
+      <rect x="334" y="78" width="72" height="30" rx="8" fill="#4f46e5"/>
+      <rect x="352" y="90" width="36" height="6" rx="3" fill="#fff"/>
+      <rect x="24" y="128" width="452" height="62" rx="10" fill="#fff" stroke="#e2e8f0"/>
+      <rect x="40" y="142" width="180" height="9" rx="4.5" fill="#334155"/>
+      <rect x="40" y="160" width="400" height="7" rx="3.5" fill="#cbd5e1"/>
+      <rect x="40" y="174" width="320" height="7" rx="3.5" fill="#cbd5e1"/>
+      <rect x="24" y="202" width="452" height="56" rx="10" fill="#fff" stroke="#e2e8f0"/>
+      <rect x="40" y="216" width="150" height="9" rx="4.5" fill="#334155"/>
+      <rect x="40" y="234" width="380" height="7" rx="3.5" fill="#cbd5e1"/>
+      <rect x="24" y="270" width="452" height="50" rx="10" fill="#fff" stroke="#e2e8f0"/>
+      <rect x="40" y="284" width="170" height="9" rx="4.5" fill="#334155"/>
+      <rect x="40" y="302" width="300" height="7" rx="3.5" fill="#cbd5e1"/>
+      <!-- 強調框：觀眾看得到 -->
+      <rect x="18" y="122" width="464" height="74" rx="13" fill="none" stroke="#f59e0b" stroke-width="3.5"/>
+      <rect x="300" y="108" width="176" height="26" rx="13" fill="#f59e0b"/>
+      <text x="388" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#1f1300" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',system-ui,sans-serif">自動校正成 diabetes</text>
+    </g>
+  </defs>
+
+  <rect width="1200" height="560" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="560" rx="24" fill="url(#halo)"/>
+
+  <g font-family="'Microsoft JhengHei','PingFang TC','Noto Sans TC',system-ui,sans-serif">
+    <!-- 左：你的螢幕 -->
+    <text x="60" y="66" font-size="22" font-weight="700" fill="#f8fafc">你的螢幕</text>
+    <text x="60" y="92" font-size="15" fill="#94a3b8">講稿和步驟按鈕浮在最上層，只有你看得到</text>
+    <use href="#page" x="60" y="128" filter="url(#shadow)"/>
+
+    <!-- CueDeck 面板 -->
+    <g transform="translate(310 150)" filter="url(#shadow)">
+      <rect width="236" height="318" rx="14" fill="#0f172a" fill-opacity=".98" stroke="#334155"/>
+      <g transform="translate(20 22) rotate(45)"><rect x="-7" y="-7" width="14" height="14" rx="3" fill="url(#brand)"/><rect x="-2.4" y="-2.4" width="4.8" height="4.8" rx="1" fill="#0f172a"/></g>
+      <text x="38" y="27" font-size="13.5" font-weight="700" fill="#e2e8f0" font-family="system-ui,'Segoe UI',sans-serif">CueDeck</text>
+      <rect x="160" y="13" width="62" height="20" rx="10" fill="#22d3ee" fill-opacity=".14" stroke="#22d3ee" stroke-opacity=".5"/>
+      <text x="191" y="27" text-anchor="middle" font-size="11.5" font-weight="700" fill="#67e8f9">● 隱形</text>
+      <line x1="0" y1="46" x2="236" y2="46" stroke="#1e293b"/>
+      <text x="16" y="72" font-size="11.5" fill="#64748b">段落 2 / 5</text>
+      <text x="16" y="94" font-size="15" font-weight="700" fill="#f1f5f9">搜尋功能</text>
+      <text x="16" y="122" font-size="13" fill="#cbd5e1">故意打錯字，讓大家看</text>
+      <text x="16" y="142" font-size="13" fill="#cbd5e1">系統怎麼處理：</text>
+      <rect x="16" y="154" width="152" height="26" rx="7" fill="#4f46e5"/>
+      <text x="92" y="172" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">▶ 示範拼字校正</text>
+      <text x="16" y="204" font-size="13" fill="#cbd5e1">結果自動換成正確的</text>
+      <text x="16" y="224" font-size="13" fill="#cbd5e1">diabetes，排第一的是…</text>
+      <rect x="16" y="252" width="204" height="1" fill="#1e293b"/>
+      <rect x="16" y="268" width="96" height="32" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="64" y="289" text-anchor="middle" font-size="12.5" fill="#cbd5e1">◀ 上一步</text>
+      <rect x="124" y="268" width="96" height="32" rx="8" fill="url(#brand)"/>
+      <text x="172" y="289" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0b1120">下一步 ▶</text>
+    </g>
+
+    <!-- 中間箭頭 -->
+    <g transform="translate(600 298)">
+      <circle r="26" fill="#1e293b" stroke="#334155"/>
+      <path d="M-9 0h16m-6-7 7 7-7 7" fill="none" stroke="#67e8f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="52" text-anchor="middle" font-size="13" fill="#94a3b8">螢幕分享</text>
+    </g>
+
+    <!-- 右：觀眾看到的 -->
+    <text x="640" y="66" font-size="22" font-weight="700" fill="#f8fafc">觀眾看到的</text>
+    <text x="640" y="92" font-size="15" fill="#94a3b8">只有網頁和強調框，完全看不到 CueDeck</text>
+    <use href="#page" x="640" y="128" filter="url(#shadow)"/>
+
+    <text x="600" y="526" text-anchor="middle" font-size="14" fill="#64748b">Google Meet、Microsoft Teams、OBS、錄影與截圖都擷取不到（Windows 10 2004 以上）</text>
+  </g>
+</svg>

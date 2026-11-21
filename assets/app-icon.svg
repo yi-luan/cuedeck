@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="CueDeck">
+  <title>CueDeck</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#16213a"/><stop offset="1" stop-color="#0b1120"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="409.6" cy="76.8" r="307.2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366f1" stop-opacity=".45"/><stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20.48" result="b"/>
+      <feFlood flood-color="#22d3ee" flood-opacity=".65" result="c"/>
+      <feComposite in="c" in2="b" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="agl" x1="256" y1="126.98" x2="256" y2="385.02" gradientUnits="userSpaceOnUse" gradientTransform="rotate(-45 256 256)">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  <linearGradient id="ag" x1="163.84" y1="163.84" x2="348.16" y2="348.16" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+  </defs>
+  <rect x="20.48" y="20.48" width="471.04" height="471.04" rx="112.64" fill="url(#bg)" stroke="#94a3b8" stroke-opacity=".28" stroke-width="3.072"/>
+  <rect x="20.48" y="20.48" width="471.04" height="471.04" rx="112.64" fill="url(#halo)"/>
+  <g transform="rotate(45 256 256)" filter="url(#glow)">
+    <rect x="163.84" y="163.84" width="184.32" height="184.32" rx="15.36" fill="url(#ag)"/>
+  </g>
+  <rect x="224.67" y="224.67" width="62.67" height="62.67" rx="5.12" fill="#0e1628" transform="rotate(45 256 256)"/>
+</svg>

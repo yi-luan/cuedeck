@@ -3,6 +3,23 @@
   "version": "0.3.0",
   "private": true,
   "description": "CueDeck：Demo 時的隱形講稿與網頁操作面板，螢幕分享看不到，點一下就能操作瀏覽器頁面",
+  "license": "MIT",
+  "homepage": "https://github.com/yi-luan/cuedeck#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yi-luan/cuedeck.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yi-luan/cuedeck/issues"
+  },
+  "keywords": [
+    "demo",
+    "presentation",
+    "teleprompter",
+    "screen-share",
+    "electron",
+    "puppeteer"
+  ],
   "main": "src/main.js",
   "type": "commonjs",
   "scripts": {
