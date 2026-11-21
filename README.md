@@ -10,12 +10,12 @@
 講稿只有你看得到，點一下就幫你操作網頁。<br>
 螢幕分享時，觀眾只會看到你要他們看的畫面。
 
-[![版本](https://img.shields.io/badge/版本-0.3.0-4f46e5)](package.json)
+[![版本](https://img.shields.io/github/v/release/yi-luan/cuedeck?label=版本&color=4f46e5)](https://github.com/yi-luan/cuedeck/releases/latest)
 [![平台](https://img.shields.io/badge/平台-Windows%2010%2B-0ea5e9)](#平台支援)
 [![Electron](https://img.shields.io/badge/Electron-38-47848f?logo=electron&logoColor=white)](https://www.electronjs.org/)
 [![授權](https://img.shields.io/badge/授權-MIT-22c55e)](LICENSE)
 
-[快速開始](#快速開始) · [使用指南](#使用指南) · [劇本格式](#劇本格式) · [常見問題](#常見問題)
+[⬇ 下載](https://github.com/yi-luan/cuedeck/releases/latest) · [快速開始](#快速開始) · [使用指南](#使用指南) · [劇本格式](#劇本格式) · [常見問題](#常見問題)
 
 </div>
 
@@ -76,7 +76,7 @@ CueDeck 把**講稿**和**網頁操作**寫進同一份劇本。講到哪裡點�
 
 **方法一：安裝檔**
 
-執行 `CueDeck-Setup-<版本>.exe`（打包方式見[打包成安裝檔](#打包成安裝檔)）。安裝後：
+到 [Releases](https://github.com/yi-luan/cuedeck/releases/latest) 下載 `CueDeck-Setup-<版本>.exe` 並執行。安裝後：
 
 - 開始功能表和桌面都會有 **CueDeck** 捷徑。
 - 第一次啟動時，範例劇本和 schema 會複製到 `文件\CueDeck\`，新增的劇本預設也存在這裡。
